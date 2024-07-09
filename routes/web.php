@@ -1,27 +1,18 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\BeatmapType;
+use App\Http\Controllers\HttpClientController;
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'beatmapType' => BeatmapType::cases(),
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
+Route::post('/get-user', [HttpClientController::class,'GetUser'])->name('get-user')->middleware(EnsureTokenIsValid::class);
+Route::post('/get-beatmaps', [HttpClientController::class,'GetUserBeatmaps'])->name('get-user-beatmaps')->middleware(EnsureTokenIsValid::class);
+Route::post('/get-beatmap', [HttpClientController::class,'GetBeatmap'])->name('get-beatmap')->middleware(EnsureTokenIsValid::class);
