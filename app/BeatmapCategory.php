@@ -2,14 +2,14 @@
 
 namespace App;
 
-enum BeatmapType : String
+enum BeatmapCategory : String
 {
     case Favourite = 'favourite';
-    case Graveyard = 'graveyard';
-    case Guest = 'guest';
+    case Ranked = 'ranked';
     case Loved = 'loved';
     case MostPlayed = 'most_played';
-    case Nominated = 'nominated';
     case Pending = 'pending';
-    case Ranked = 'ranked';
+    case Guest = 'guest';
+    case Nominated = 'nominated';
+    case Graveyard = 'graveyard';
 }
