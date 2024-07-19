@@ -10,9 +10,9 @@ defineProps({
 
 </script>
 <template>
-    <div class="flex justify-between" v-if="count">
+    <div class="flex justify-between">
         <div class="flex">
-            <h2 class="mr-2">{{ title }}</h2>
+            <h2 class="mr-2 capitalize">{{ title }}</h2>
             <div>{{ count }}</div>
         </div>
         <div class="">
@@ -23,7 +23,9 @@ defineProps({
             </svg>
         </div>
     </div>
-    <div v-for="beatmap in beatmaps">
-        <BeatmapCard :beatmap="beatmap"/>
+    <div>
+        <div v-for="beatmap in beatmaps">
+            <BeatmapCard :beatmap="beatmap"/>
+        </div>
     </div>
 </template>
