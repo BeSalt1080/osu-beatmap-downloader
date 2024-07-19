@@ -26,7 +26,7 @@ onMounted(() => {
     databaseOpenReuqest.onsuccess = () => {
         db = databaseOpenReuqest.result;
         console.log("Database initialized successfully");
-        if (db.objectStoreONames.contains("users")) {
+        if (db.objectStoreNames.contains("users")) {
             console.log("users store exists");
             const transaction = db.transaction("users", "readonly");
             transaction.onerror = (e) => {
