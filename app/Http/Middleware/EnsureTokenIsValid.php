@@ -23,7 +23,6 @@ class EnsureTokenIsValid
             $token = ['access_token' => $response['access_token'], 'token_expired_time' => time() + $response['expires_in']];
             Storage::put('token.json', json_encode($token));
         }
-
         # Append token to request
         $request->token = Storage::json('token.json')['access_token'];
         return $next($request);

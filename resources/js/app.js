@@ -6,7 +6,9 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
-const appName = 'OsuMusicDownloader';
+const appName = import.meta.env.VITE_APP_NAME;
+
+console.log(appName);
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
